@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 print("程式起點")
 st.title("這是我的第一個streamlit專案")
 st.header("請是我的次標題")
@@ -31,5 +32,12 @@ with st.sidebar:
     ''')
 
     st.button("按鈕1")
+
+def downloadData(): #function
+    print("下載資料")
+
+while True:
+    time.sleep(5)
+    downloadData()
 
 print("程式結束點")
