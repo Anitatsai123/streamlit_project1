@@ -5,6 +5,7 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 import json
+import pandas as pd
 
 # Use a service account.
 app = None
@@ -19,12 +20,15 @@ if db is None :
 
     db = firestore.client()
 
-doc_ref = db.collection('records')
-docs = doc_ref.get()
-for doc in docs:
-    print(doc)
+records_ref = db.collection('records')
+query = records_ref.limit_to_last(20)
+docs = query.get()
+
+datalist = [doc.to_dict() for doc in docs]
+dict_data = pd.DataFrame(datalist)
 
 st.title("光線和距離即時監控")
+st.table(dict_data)
 
 
 
