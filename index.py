@@ -6,7 +6,6 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 import json
 
-
 # Use a service account.
 app = None
 db = None
@@ -20,6 +19,10 @@ if db is None :
 
     db = firestore.client()
 
+doc_ref = db.collection('records')
+docs = doc_ref.get()
+for doc in docs:
+    print(doc)
 
 st.title("光線和距離即時監控")
 
